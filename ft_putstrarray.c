@@ -16,11 +16,8 @@ void	ft_putstrarray(char **array)
 {
 	int i;
 
-	i = 0;
-	if (array && array[i])
-		while (array[i])
-		{
+	i = -1;
+	if (array && *array)
+		while (array[++i])
 			ft_putendl(array[i]);
-			i++;
-		}
 }

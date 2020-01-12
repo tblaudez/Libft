@@ -14,7 +14,7 @@
 
 int	ft_strlen(const char *s)
 {
-	if (!s || *s == '\0')
+	if (!s || !*s)
 		return (0);
 	return (1 + ft_strlen(s + 1));
 }

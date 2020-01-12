@@ -12,10 +12,7 @@
 
 #include "libft.h"
 
-int	ft_islower(int c)
+inline int	ft_islower(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	else
-		return (0);
+	return ((c >= 'a' && c <= 'z'));
 }

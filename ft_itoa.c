@@ -18,8 +18,8 @@ char	*ft_itoa(intmax_t nbr)
 	int		neg;
 	int		i;
 
-	neg = (nbr < 0 ? 1 : 0);
-	nbr = ((nbr < 0) ? -nbr : nbr);
+	neg = nbr < 0 ? 1 : 0;
+	nbr = nbr < 0 ? -nbr : nbr;
 	i = ft_nbrdig(nbr, 10);
 	str = ft_strnew(i);
 	while (i-- > 0)

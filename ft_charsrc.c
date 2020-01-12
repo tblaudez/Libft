@@ -16,13 +16,11 @@ int	ft_charsrc(const char *str, char c)
 {
 	int i;
 
-	i = 0;
-	if (str)
-		while (str[i])
-		{
-			if (str[i] == c)
-				return (i);
-			i++;
-		}
+	if (str == NULL || *str == 0)
+		return (-1);
+	i = -1;
+	while (str[++i])
+		if (str[i] == c)
+			return (i);
 	return (-1);
 }

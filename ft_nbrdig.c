@@ -16,6 +16,8 @@ int	ft_nbrdig(intmax_t nbr, int base)
 {
 	int	i;
 
+	if (base == 0)
+		return (-1);
 	i = 1;
 	while (nbr /= base)
 		i++;

@@ -38,7 +38,7 @@ static int	nbr_digits(const char *str, int base)
 	while (str[i])
 	{
 		if (convert(str[i], base) < 0)
-			break ;
+			break;
 		i++;
 	}
 	return (i);

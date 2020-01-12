@@ -16,12 +16,9 @@ int	ft_str_is_something(const char *str, int (*f)(int c))
 {
 	int	i;
 
-	i = 0;
-	while (str[i])
-	{
+	i = -1;
+	while (str[++i])
 		if (!f(str[i]))
 			return (0);
-		i++;
-	}
 	return (1);
 }

@@ -14,9 +14,9 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char *s_dup;
+	char	*s_dup;
 
-	s_dup = s;
+	s_dup = (char*)s;
 	while (n--)
-		*s_dup++ = '\0';
+		*s_dup++ = 0;
 }

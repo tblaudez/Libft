@@ -17,7 +17,7 @@ void	ft_putnbr(intmax_t n)
 	if (n < 0)
 	{
 		ft_putchar('-');
-		n = -n;
+		n *= -1;
 	}
 	if (n > 9)
 	{
