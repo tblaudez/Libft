@@ -3,20 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblaudez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tblaudez <tblaudez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:01:40 by tblaudez          #+#    #+#             */
-/*   Updated: 2018/04/04 15:01:41 by tblaudez         ###   ########.fr       */
+/*   Updated: 2020/01/14 15:48:48 by tblaudez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *ptr, size_t size)
 {
-	char	*s_dup;
+	char	*dup;
+	size_t	i;
 
-	s_dup = (char*)s;
-	while (n--)
-		*s_dup++ = 0;
+	if (size <= 0 || ptr == NULL)
+		return;
+	dup = ptr;
+	i = 0;
+	while (i++ < size)
+	{
+		*dup = 0;
+		dup++;
+	}
 }
