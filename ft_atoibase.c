@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoibase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblaudez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tblaudez <tblaudez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 14:25:48 by tblaudez          #+#    #+#             */
-/*   Updated: 2018/10/11 15:33:46 by tblaudez         ###   ########.fr       */
+/*   Updated: 2020/01/15 11:26:53 by tblaudez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	nbr_digits(const char *str, int base)
 	while (str[i])
 	{
 		if (convert(str[i], base) < 0)
-			break;
+			break ;
 		i++;
 	}
 	return (i);

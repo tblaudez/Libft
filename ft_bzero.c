@@ -6,7 +6,7 @@
 /*   By: tblaudez <tblaudez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 15:01:40 by tblaudez          #+#    #+#             */
-/*   Updated: 2020/01/14 15:48:48 by tblaudez         ###   ########.fr       */
+/*   Updated: 2020/01/15 11:26:42 by tblaudez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_bzero(void *ptr, size_t size)
 	size_t	i;
 
 	if (size <= 0 || ptr == NULL)
-		return;
+		return ;
 	dup = ptr;
 	i = 0;
 	while (i++ < size)
