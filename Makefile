@@ -1,53 +1,52 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tblaudez <tblaudez@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/04/05 15:48:20 by tblaudez          #+#    #+#              #
-#    Updated: 2018/10/11 15:19:56 by tblaudez         ###   ########.fr        #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: tblaudez <tblaudez@student.oodam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2021/01/22 16:24:47 by tblaudez      #+#    #+#                  #
+#    Updated: 2021/01/22 16:24:47 by tblaudez      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME:= libft.a
-
-SRC:= ft_atoi.c ft_memcpy.c ft_strncat.c ft_bzero.c ft_memmove.c ft_strncmp.c \
-ft_isalnum.c ft_memset.c ft_strncpy.c ft_isalpha.c ft_strcat.c ft_strnstr.c \
-ft_isascii.c ft_strchr.c ft_strrchr.c ft_isdigit.c ft_strcmp.c ft_strstr.c \
-ft_isprint.c ft_strcpy.c ft_memccpy.c ft_strdup.c \
-ft_memchr.c ft_strlcat.c ft_memcmp.c ft_strlen.c ft_memalloc.c ft_memdel.c \
-ft_strnew.c ft_strdel.c ft_strclr.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strsplit.c \
-ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
-ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-ft_isspace.c ft_str_is_something.c ft_islower.c ft_isupper.c ft_strndup.c \
-ft_charsrc.c ft_nbrdig.c ft_atoibase.c ft_strreplace.c \
-ft_power.c ft_strjoinfree.c ft_itoabase.c ft_strtrim.c \
-get_next_line.c ft_fprintf/ft_fprintf.c \
-ft_fprintf/apply_flags.c ft_fprintf/get_alpha.c ft_fprintf/get_numeric.c \
-ft_fprintf/utils.c ft_fprintf/custom_func.c
-
-OBJ:= $(SRC:%.c=objects/%.o)
-CFLAGS:= -Wall -Wextra -Werror -I includes/
+OBJ:= src/ft_atoi.o src/ft_bzero.o src/ft_charsrc.o src/ft_isalnum.o src/ft_isalpha.o src/ft_isascii.o \
+	src/ft_isdigit.o src/ft_islower.o src/ft_isprint.o src/ft_str_is_something.o src/ft_isspace.o src/ft_isupper.o \
+	src/ft_itoa.o src/ft_itoabase.o src/ft_memalloc.o src/ft_memcmp.o src/ft_memcpy.o src/ft_memdel.o src/ft_memset.o \
+	src/ft_nbrdig.o src/ft_power.o src/ft_putchar.o src/ft_putchar_fd.o src/ft_putendl.o src/ft_putendl_fd.o \
+	src/ft_putnbr.o src/ft_putnbr_fd.o src/ft_putstr.o src/ft_putstr_fd.o src/ft_strcat.o src/ft_strchr.o \
+	src/ft_strcmp.o src/ft_strcpy.o src/ft_strdup.o src/ft_strequ.o src/ft_strjoinfree.o src/ft_strlen.o \
+	src/ft_strncpy.o src/ft_strnew.o src/ft_strreplace.o src/ft_strsub.o
+INCLUDE:= include/libft.h
+CFLAGS:= -Wall -Wextra -Werror -std=c99 -pedantic -I include/ -I ft_fprintf/include
+LIBFPRINTF:= ft_fprintf/libfprintf.a
 
 all: $(NAME)
+	@printf "\e[35mDone\e[0m\n"
 
-$(NAME): $(OBJ)
-	@printf "\n\e[1;33mCréation du binaire \e[0m- %s\n" $(NAME)
-	@ar rc $(NAME) $(OBJ) \
-	&& ranlib $(NAME)
+$(NAME): $(LIBFPRINTF) $(OBJ) $(INCLUDE)
+	@printf "\n\e[32mCreating archive \e[4m%s\e[0m\n" $(NAME)
+	@ar rs $(NAME) $(OBJ) $(LIBFPRINTF) &>/dev/null
 
-objects/%.o: %.c
-	@printf "\e[1;32mCréation du fichier objet: \e[0m- %-50s\r" $@
-	@mkdir -p objects/ft_fprintf
+$(LIBFPRINTF):
+	@make -C ft_fprintf/
+
+%.o: %.c
+	@printf "\e[33mCompiling %-50s\e[0m\r" $<
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+%.c:
+
 clean:
-	@/bin/rm -rf objects/
+	@rm -f $(OBJ)
+	@$(MAKE) -C ft_fprintf/ clean
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@printf "\e[31mDeleting \e[4m%s\e[0m\n" "$(NAME)"
+	@rm -f $(NAME)
+	@$(MAKE) -C ft_fprintf/ fclean
 
 re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re
