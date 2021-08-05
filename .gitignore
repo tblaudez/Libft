@@ -1,0 +1,5 @@
+*.dSYM/
+*.[oa]
+.DS_Store
+.vscode/
+.idea/
