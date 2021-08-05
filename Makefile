@@ -6,15 +6,15 @@
 #    By: tblaudez <tblaudez@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/03/31 15:28:54 by tblaudez      #+#    #+#                  #
-#    Updated: 2021/08/05 13:30:37 by tblaudez      ########   odam.nl          #
+#    Updated: 2021/08/05 15:13:53 by tblaudez      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 TARGET := libft.a
 CFLAGS := -Wall -Wextra -Werror -I include/ -std=c99 $(EXTRA_FLAGS)
 
-SOURCES := $(shell find src/ -name "*.c")
-HEADERS := $(shell find include/ -name "*.h")
+SOURCES := $(shell find src -name "*.c")
+HEADERS := $(shell find include -name "*.h")
 OBJECTS := $(SOURCES:%.c=%.o)
 
 all: $(TARGET)
