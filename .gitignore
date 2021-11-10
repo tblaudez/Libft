@@ -1,5 +1,3 @@
-*.dSYM/
-*.[oa]
-.DS_Store
-.vscode/
-.idea/
+/cmake-build-debug/
+/.idea/
+/*.[oa]

@@ -151,7 +151,7 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*))
 	return new_lst;
 }
 
-static t_list *merge_list(t_list *left, t_list *right, int (*compare)(void *a, void *b))
+static t_list *merge_list(t_list *left, t_list *right, int (*compare)(void *, void *))
 {
 	t_list *result = NULL;
 
@@ -171,7 +171,7 @@ static t_list *merge_list(t_list *left, t_list *right, int (*compare)(void *a, v
 }
 
 // Merge sort a linked list using the `compare` function
-void merge_sort_list(t_list **lst, int (*compare)(void *a, void *b))
+void merge_sort_list(t_list **lst, int (*compare)(void *, void *))
 {
 	t_list *node = *lst;
 	int lst_len;

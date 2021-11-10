@@ -11,30 +11,28 @@
 # **************************************************************************** #
 
 TARGET := libft.a
-CFLAGS := -Wall -Wextra -Werror -I include/ -std=c99 $(EXTRA_FLAGS)
 
-SOURCES := $(shell find src -name "*.c")
-HEADERS := $(shell find include -name "*.h")
-OBJECTS := $(SOURCES:%.c=%.o)
+CC ?= gcc
+CFLAGS ?= -I include/ -Wall -Wextra -Werror -Wno-implicit-fallthrough
+
+HEADERS := $(shell find include/ -name "*.h")
+SOURCES := $(shell find src/ -name "*.c")
+OBJECTS := $(SOURCES:.c=.o)
 
 all: $(TARGET)
 
-$(TARGET): $(OBJECTS)
-	@printf "✅ \e[96;1m%s\e[0m\n" $(TARGET)
-	@ar rs $@ $(OBJECTS) 2>&- 1>&-
+$(TARGET): $(OBJECTS) $(HEADERS)
+	ar rcs $@ $(OBJECTS)
 
 %.o: %.c $(HEADERS)
-	@printf "🔄 \e[34m%s: \e[32m%s\e[0m\n" $(TARGET) $@
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@printf "🗑  \e[31m%s\e[0m\n" $(OBJECTS)
-	@rm -f $(OBJECTS)
+	@rm -vf $(OBJECTS)
 
 fclean: clean
-	@printf "🗑  \e[31;1m%s\e[0m\n" $(TARGET)
-	@rm -f $(TARGET)
+	@rm -vf $(TARGET)
 
 re: fclean all
 
-.PHONY: default all clean fclean re
+.PHONY: all clean fclean re

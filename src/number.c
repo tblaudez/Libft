@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdbool.h> // bool
-#include <stddef.h> // size_t
 #include <limits.h> // LONG_MAX LONG_MIN
-#include <stdint.h> // uintmax_t
 
 #define LONG_DIGITS 19
 #define ULONG_DIGITS 20
@@ -26,16 +23,16 @@ int64_t ft_strtol(const char *str, char **endptr, int base)
 	unsigned long cutoff, acc;
 
 	do {
-		c = *s++;
+		c = (unsigned char )*s++;
 	} while (ft_isspace(c));
 	if (c == '-') {
 		neg = 1;
-		c = *s++;
+		c = (unsigned char )*s++;
 	} else if (c == '+')
-		c = *s++;
+		c = (unsigned char )*s++;
 	if ((base == 0 || base == 16) &&
 		c == '0' && (*s == 'x' || *s == 'X')) {
-			c = s[1];
+			c = (unsigned char )s[1];
 			s += 2;
 			base = 16;		
 	}
@@ -43,9 +40,9 @@ int64_t ft_strtol(const char *str, char **endptr, int base)
 		base = (c == '0' ? 8 : 10);
 
 	cutoff = (neg ? -(unsigned long)LONG_MIN : LONG_MAX);
-	cutlim = cutoff % (unsigned long)base;
+	cutlim = (int)(cutoff % (unsigned long)base);
 	cutoff /= (unsigned long)base;
-	for (acc = 0, any = 0;; c = *s++) {
+	for (acc = 0, any = 0;; c = (unsigned char )*s++) {
 		if (ft_isdigit(c))
 			c -= '0';
 		else if (ft_isalpha(c))
@@ -84,7 +81,7 @@ char *ft_itoa(int nbr)
 
 	do {
 		int modulo = (nbr % 10);
-		*--p = '0' + (nbr >= 0 ? modulo : -modulo);
+		*--p = (char)('0' + (nbr >= 0 ? modulo : -modulo));
 		nbr /= 10;
 	} while (nbr != 0);
 	if (neg)
@@ -99,7 +96,7 @@ char *ft_uitoa(unsigned int nbr)
 	char *p = buf + ULONG_DIGITS;
 
 	do {
-		*--p = '0' + (nbr % 10);
+		*--p = (char)('0' + (nbr % 10));
 		nbr /= 10;
 	} while (nbr != 0);
 	return p;

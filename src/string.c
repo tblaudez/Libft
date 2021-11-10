@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdbool.h> // bool
-#include <stddef.h> // size_t
 #include <stdlib.h> // free
 
 
@@ -96,7 +94,7 @@ char *ft_strndup(const char *src, size_t size)
 {
 	if (src == NULL)
 		return NULL;
-	char *str_dup = (char*)ft_memalloc(size);;
+	char *str_dup = (char*)ft_memalloc(size);
 	return ft_strncpy(str_dup, src, size);
 }
 

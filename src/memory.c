@@ -12,7 +12,6 @@
 
 #include "libft.h"
 #include <stdlib.h> // malloc, free
-#include <stddef.h> // size_t
 
 void *ft_memset(void *dest, int c, size_t len)
 {
